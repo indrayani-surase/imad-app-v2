@@ -5,20 +5,52 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
-  title:"Article-one|indra",
-  heading:"Article-one",
-  date:"feb 14,2017",
-  content:
-           `<p>
-                Hi, am indrayani.this is content for my first article.am indrayani.this is content for my first article.  am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.
-            </p>
-            <p>
-                am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.
-            </p>
-            <p>
-                am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article
-            </p>`
+var  articles={
+    "article-One":{
+      title:"Article-one|indra",
+      heading:"Article-one",
+      date:"feb 14,2017",
+      content:
+               `<p>
+                    Hi, am indrayani.this is content for my first article.am indrayani.this is content for my first article.  am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.
+                </p>
+                <p>
+                    am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.
+                </p>
+                <p>
+                    am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article.am indrayani.this is content for my first article
+                </p>`
+    },
+    "article-Two":{
+          title:"Article-two|indra",
+           heading:"Article-two",
+          date:"feb 15,2017",
+          content:
+               `<p>
+                    Hi, am indrayani.this is content for my second article.am indrayani.this is content for my second article.  am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.
+                </p>
+                <p>
+                    am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.
+                </p>
+                <p>
+                    am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article.am indrayani.this is content for my second article
+                </p>`
+    },
+    "article-three":{
+          title:"Article-three|indra",
+          heading:"Article-three",
+          date:"feb 17,2017",
+          content:
+               `<p>
+                    Hi, am indrayani.this is content for my third article.am indrayani.this is content for my third article.  am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.
+                </p>
+                <p>
+                    am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.
+                </p>
+                <p>
+                    am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article.am indrayani.this is content for my third article
+                </p>`
+    }
 };
 
 function createTemplate(data){
@@ -66,17 +98,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-  res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+    var articleName=req.params.articleName;
+  res.send(createTemplate(articles(articleName)));
 });
 
-app.get('/article-two',function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html')); 
-});
-
-app.get('/article-three',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
