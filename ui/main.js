@@ -29,7 +29,7 @@ submit.onclick=function(){
     
     //make request to server
     var names=['name1','name2','name3','name4','name5'];
-    var list="";
+    var list='';
     for(i=0;i<names.length;i++){
         list=='<li>'+names[i]+'</li>';
         
